@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>socket.io node.js</title>
+    <style>
+      
+    </style>
+  </head>
+  <body>
+    <h1>socket.io</h1>
+    <form action="#" id="form">
+      <textarea id="message" cols="30" rows="10"></textarea>
+      <input type="submit" value="send message" id="submit"/>
+    </form>
+    <script src="http://10.0.0.154:8001/socket.io/socket.io.js"></script>
+    <script>
+      var socket = io.connect('http://10.0.0.154:8001');
+      var msg = document.getElementById('message');
+      console.log(msg.value)
+      var submit = document.getElementById('submit');
+
+      socket.on('users', function(data) {
+        // socket.emit('msg', {text: msg.value})
+        console.log(data);
+              });
+
+      socket.on('stream_1_status', function(data) {
+        console.log(data);
+          });
+
+      socket.on('stream_2_status', function(data) {
+        console.log(data);
+          });
+
+      socket.emit('stream_1', {status_req: 'yes'})
+
+    //   submit.onclick = function() {
+    //     socket.emit('msg', {text: msg.value});
+    //   };
+    //   // 监听msg事件
+    //   socket.on('msg', function(data) {
+    //     console.log(data);
+    //   })
+    </script>
+  </body>
+</html>
+<!-- socket.on('users', function(data) {
+    socket.emit('stream_1', {status_req: 'yes'})
+    console.log(data);
+          });
+  socket.on('stream_1_status', function(data) {
+    console.log(data);
+          }); -->
